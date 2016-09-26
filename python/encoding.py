@@ -7,16 +7,6 @@ import getopt
 
 __author__ = 'zhangjk'
 
-'''
-file_name = "G:\source_new\ict\mzxml/test.java"
-openFile = codecs.open(file_name, "r", "gbk")
-output_file_name = "G:\source_new\ict\mzxml\convert.txt"
-outputFile = codecs.open(output_file_name, "w", "utf-8")
-outputFile.write(openFile.read())
-openFile.close()
-outputFile.close()
-'''
-
 
 def main(argv):
     input_dir = ""
