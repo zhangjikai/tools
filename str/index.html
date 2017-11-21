@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transform To String</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="content">
+     <h2>Transform multiple line raw text to string format.</h2>
+    <div class="config">
+        <span><input type="checkbox" id="quote-type"> Use Single Quote</span>
+        <span>Join Character : <input type="text" id="join"></span>
+        <span>End Character : <input type="text" id="end"></span>
+    </div>
+
+    <textarea spellcheck="false" id="input-area"  wrap="soft" ></textarea>
+    <pre id="output-area"></pre>
+    <button class="btn" data-clipboard-target="#output-area">复制</button>
+
+</div>
+<script src="assets/js/clipboard.min.js"></script>
+<script type="text/javascript" src="assets/js/index.js"></script>
+</body>
+</html>

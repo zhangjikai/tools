@@ -1,5 +1,5 @@
-# Delete Characters
-Delete  characters at the beginning of each line.
+# Delete Unwanted Characters
+Delete unwanted characters at the beginning of each line.
 
 ### Example 1
 
