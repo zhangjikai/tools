@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Characters</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="content">
+    <h2>Delete unwanted characters at the beginning of each line.</h2>
+    <div class="config">
+        <span><input type="checkbox" id="line-number"> Delete Line Numbers</span>
+        <span>Deleted Characters: <input type="text" id="del"/></span>
+    </div>
+
+    <textarea spellcheck="false" id="input-area"  wrap="soft" ></textarea>
+    <pre id="output-area"></pre>
+    <button class="btn" data-clipboard-target="#output-area">Copy</button>
+
+</div>
+<script src="assets/js/clipboard.min.js"></script>
+<script type="text/javascript" src="assets/js/index.js"></script>
+</body>
+</html>
