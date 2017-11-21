@@ -13,10 +13,10 @@ original text:
 
 conversion text:
 ```
- aaaaaa
- aaaaaaaaaa
- ggggggggg
- gggggggg
+aaaaaa
+aaaaaaaaaa
+ggggggggg
+gggggggg
 ```
 
 ### Example 2
