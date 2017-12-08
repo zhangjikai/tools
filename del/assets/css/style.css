@@ -79,7 +79,7 @@ body {
 }
 
 .config input[type='text'] {
-    width: 50px;
+    width: 100px;
     font-size: 12px;
     line-height: 12px;
 }

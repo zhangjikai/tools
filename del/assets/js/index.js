@@ -6,12 +6,9 @@ var inputArea = document.getElementById("input-area");
 var outputArea = document.getElementById('output-area');
 var lineConfig = document.getElementById('line-number');
 var delConfig = document.getElementById('del');
+var modeConfig = document.getElementById('mode');
 new Clipboard('.btn');
 
-var lineBreakTag = "\n";
-var displayLinkBreak = "\\n";
-var quoteTag = "\"";
-var displayQuoteTag = "\\\"";
 var delTag = "+";
 var greaterTag = ">";
 var displayGreaterTag = "&gt;";
@@ -22,47 +19,44 @@ var displayAndTag = "&amp;";
 
 var delSetting = "del";
 var lineSetting = "line";
+var modeSetting = "mode";
 
 function transferText(text) {
     if (text == null || text == "") {
         return "";
     }
-    var result = "";
-    var lines = text.split(lineBreakTag);
+    var result = text;
 
-    for (var i = 0; i < lines.length; i++) {
-        var line = lines[i];
-        if (lineConfig.checked) {
-            var hasNumber = false;
-            for (var j = 0; j < line.length; j++) {
-                if (line[j] ==" ") {
-                    if(hasNumber) {
-                        break;
-                    } else {
-                        continue;
-                    }
-                }
-                if(!isNaN(line[j])) {
-                    hasNumber = true;
-                    continue;
-                }
-                break;
+    if (lineConfig.checked) {
+        var lineNumberReg = /^\s*\d+/;
+        result = result.replaceAll(lineNumberReg, "");
+    }
+
+    if (delTag != null && delTag != "") {
+        var spaceReg = /\s*/;
+        var delRegExp;
+
+        if(modeConfig.checked) {
+            try {
+                delRegExp = eval(delTag);
+            } catch(e) {
+                console.log(e)
             }
-            if(hasNumber) {
-                line = line.substring(j);
+        } else {
+            if (spaceReg.test(delTag)) {
+                delRegExp = new RegExp("^\\" + delTag, 'g');
+            } else {
+                delRegExp = new RegExp("^\\s*\\" + delTag, 'g');
             }
         }
-
-        line = line.replace(delTag, "");
-
-        result += line;
-        result += lineBreakTag;
+        result = result.replaceAll(delRegExp, "");
     }
+
+
 
     result = result.replaceAll(andTag, displayAndTag);
     result = result.replaceAll(greaterTag, displayGreaterTag);
     result = result.replaceAll(lessTag, displayLessTag);
-
     return result;
 }
 
@@ -76,8 +70,18 @@ function delChange() {
     inputChange();
 }
 
+function modeChange() {
+    if (modeConfig.checked) {
+        localStorage.setItem(modeSetting, "s");
+    } else {
+        localStorage.setItem(modeSetting, "d");
+    }
+
+    inputChange();
+}
+
 function lineChange() {
-    if(lineConfig.checked) {
+    if (lineConfig.checked) {
         localStorage.setItem(lineSetting, "s");
     } else {
         localStorage.setItem(lineSetting, "d");
@@ -88,13 +92,23 @@ function lineChange() {
 
 function loadSetting() {
     var lineNumber = localStorage.getItem(lineSetting);
-    if(lineNumber != null) {
-        if(lineNumber == "s") {
+    if (lineNumber != null) {
+        if (lineNumber == "s") {
             lineConfig.checked = true;
         } else {
             lineConfig.checked = false;
         }
     }
+
+    var mode = localStorage.getItem(modeSetting);
+    if (mode != null) {
+        if (mode == "s") {
+            modeConfig.checked = true;
+        } else {
+            modeConfig.checked = false;
+        }
+    }
+
     var del = localStorage.getItem(delSetting);
     if (del != null) {
         delTag = del;
@@ -109,11 +123,13 @@ window.onload = function () {
         inputArea.addEventListener('input', inputChange, false);
         delConfig.addEventListener('input', delChange, false);
         lineConfig.addEventListener('change', lineChange, false);
+        modeConfig.addEventListener('change', modeChange, false);
 
     } else if (inputArea.attachEvent) {
         inputArea.attachEvent('onpropertychange', inputChange);
         delConfig.attachEvent('onpropertychange', delChange);
         lineConfig.attachEvent('change', lineChange);
+        modeConfig.attachEvent('change', modeChange);
     }
     loadSetting();
 };

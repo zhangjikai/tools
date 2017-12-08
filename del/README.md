@@ -1,5 +1,10 @@
 # Delete Unwanted Characters
-Delete unwanted characters at the beginning of each line.
+
+[http://tools.zhangjikai.com/del/](http://tools.zhangjikai.com/del/)
+
+Delete unwanted characters at the beginning of each line. You can also write regular expression (e.g. `/^a/`) at the input area for more flexible requirements. 
+
+
 
 ### Example 1
 
