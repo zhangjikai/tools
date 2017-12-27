@@ -1,0 +1,66 @@
+#monitor-container {
+    position: fixed;
+    width: auto;
+    height: auto;
+
+    right: 1em;
+    bottom: 1em;
+    /*top: 30%;*/
+    /*-webkit-transform: translate(0%, -50%);*/
+    /*transform: translate(0%, -50%);*/
+
+}
+
+#monitor-container table {
+    width: 100%;
+}
+
+#monitor-container i {
+    font-size: 1.2em;
+}
+
+#monitor-container .fa-check-circle {
+    color: green;
+}
+
+#monitor-container .fa-exclamation-triangle {
+    color: red;
+}
+
+#monitor-container .custom-form {
+    display: block;
+    margin-bottom: 1em;
+}
+
+#monitor-container .custom-form input {
+    width: 40%;
+    margin-right: 1em;
+    min-width: 200px;
+}
+
+#monitor-container .custom-form button {
+    width: 70px;
+    float: right;
+}
+
+#monitor-container .fa-times {
+    cursor: pointer;
+}
+
+#monitor-container a {
+    text-decoration: none;
+    color: #773fa1;
+}
+
+#monitor-container .pure-table thead {
+    background: #ff7f50;
+    color: white;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.left-text {
+    text-align: left;
+}
