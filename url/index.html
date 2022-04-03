@@ -10,6 +10,18 @@
         li {
             padding: 0.3em 0;
         }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
@@ -18,11 +30,15 @@
 
     <textarea spellcheck="false" id="input-area" wrap="soft"></textarea>
     <div>
+        <button id="button">Clear</button>
+    </div>
+    <div>
         <ul id="services-display">
         </ul>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     const urlRegex = /(https?:\/\/[^\s)]+)/g;
     const linkPattern = "<li><a href='{0}' target='_blank'>{1}</a></li>"
@@ -32,13 +48,19 @@
 
     window.onload = function () {
         inputArea.addEventListener('input', inputChange, false);
+        $("#button").click(function () {
+            $("#input-area").val('');
+        })
     };
+
+
 
     function inputChange() {
         let urls = inputArea.value.match(urlRegex);
         $("#services-display").html('');
         for (let url of urls) {
             url = url.replaceAll("&amp;", "&");
+            url = url.replace("&ticket", "&t");
             $("#services-display").append(linkPattern.format(url, url));
         }
     }
