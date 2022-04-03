@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Url 提取</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        li {
+            padding: 0.3em 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="content">
+
+    <textarea spellcheck="false" id="input-area" wrap="soft"></textarea>
+    <div>
+        <ul id="services-display">
+        </ul>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    const urlRegex = /(https?:\/\/[^\s)]+)/g;
+    const linkPattern = "<li><a href='{0}' target='_blank'>{1}</a></li>"
+
+    let inputArea = document.getElementById("input-area");
+
+
+    window.onload = function () {
+        inputArea.addEventListener('input', inputChange, false);
+    };
+
+    function inputChange() {
+        let urls = inputArea.value.match(urlRegex);
+        $("#services-display").html('');
+        for (let url of urls) {
+            url = url.replaceAll("&amp;", "&");
+            $("#services-display").append(linkPattern.format(url, url));
+        }
+    }
+
+    String.prototype.format = function () {
+        let a = this;
+        for (let k in arguments) {
+            a = a.replace("{" + k + "}", arguments[k])
+        }
+        return a
+    }
+</script>
+</body>
+</html>
